@@ -2,11 +2,11 @@ import "./BasicBinarySearch.css";
 import { animate } from "motion";
 import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
 import "@fontsource/roboto";
-import { Button, Select, Row, Col } from "antd";
+import { Button, Select, Card, Row, Col } from "antd";
 import React from "react";
 import BasicBSCodeBlock from "./components/BasicBSCodeBlock";
 
-class BasicBinarySearch extends React.Component {
+class BinarySearchCond extends React.Component {
   constructor(props) {
     super(props);
     const arr_gen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -14,7 +14,7 @@ class BasicBinarySearch extends React.Component {
     this.state = {
       arr: arr_gen,
       lo: 0,
-      hi: arr_gen.length - 1,
+      hi: arr_gen.length,
       mid: -1,
       target: 5,
       targetOptions,
@@ -45,7 +45,7 @@ class BasicBinarySearch extends React.Component {
   markAllIn = (lo, hi) => {
     for (let i = lo; i <= hi; i++) {
       animate(
-        `#basic-s-${i}`,
+        `#cond-s-${i}`,
         {
           opacity: 1,
         },
@@ -57,7 +57,7 @@ class BasicBinarySearch extends React.Component {
   markOut = (lo, hi) => {
     for (let i = 0; i < lo; i++) {
       animate(
-        `#basic-s-${i}`,
+        `#cond-s-${i}`,
         {
           opacity: 0.2,
         },
@@ -66,7 +66,7 @@ class BasicBinarySearch extends React.Component {
     }
     for (let i = hi + 1; i < this.state.arr.length; i++) {
       animate(
-        `#basic-s-${i}`,
+        `#cond-s-${i}`,
         {
           opacity: 0.2,
         },
@@ -83,7 +83,7 @@ class BasicBinarySearch extends React.Component {
     }
     const arr = Array.from(set);
     arr.sort((a, b) => a - b);
-    const target = arr[this.getInRange(0, arr.length - 1)];
+    const target = arr[this.getInRange(0, arr.length)];
     this.reset(arr, target);
   };
 
@@ -107,17 +107,17 @@ class BasicBinarySearch extends React.Component {
       {
         arr: arr_gen,
         lo: 0,
-        hi: arr_gen.length - 1,
+        hi: arr_gen.length,
         mid: -1,
         target: target ?? this.state.target,
         targetOptions,
       },
       () => {
-        this.markAllIn(0, this.state.arr.length - 1);
-        this.move(this.state.lo, "#basic-arr-lo");
-        this.move(this.state.hi, "#basic-arr-hi");
-        this.move(0, "#basic-arr-mid", 0);
-        this.color(".Basic", "white");
+        this.markAllIn(0, this.state.arr.length);
+        this.move(this.state.lo, "#cond-arr-lo");
+        this.move(this.state.hi, "#cond-arr-hi");
+        this.move(0, "#cond-arr-mid", 0);
+        this.color(".Cond", "white");
       }
     );
   };
@@ -131,48 +131,46 @@ class BasicBinarySearch extends React.Component {
     let { move, reset, color, markOut } = this;
 
     const next = (arr, target) => {
-      if (lo > hi || arr[mid] === target) {
+      if (lo >= hi || arr[mid] === target) {
         return;
       }
       const currMid = Math.floor(lo + (hi - lo) / 2);
       if (currMid !== mid) {
         mid = currMid;
-        move(currMid, "#basic-arr-mid");
+        move(currMid, "#cond-arr-mid");
         if (arr[mid] === target) {
-          color(`#basic-s-${mid}`, "#53e089");
+          color(`#cond-s-${mid}`, "#53e089");
         }
         return;
       }
-      if (arr[mid] < target) {
-        lo = mid + 1;
-        move(lo, "#basic-arr-lo");
+      if (arr[mid] >= target) {
+        hi = mid;
+        move(hi, "#cond-arr-hi");
         markOut(lo, hi);
       } else {
-        hi = mid - 1;
-        move(hi, "#basic-arr-hi");
+        lo = mid + 1;
+        move(lo, "#cond-arr-lo");
         markOut(lo, hi);
       }
     };
 
     const code = `
-    def binary_search(arr, key):
+    def binary_search_cond(arr, key):
       lo, hi = 0, len(arr) - 1
       while lo <= hi:
           mid = lo + (hi - lo) // 2
-          if arr[mid] == key:
-              return mid
-          elif arr[mid] < key:
-              hi = mid - 1
+          if arr[mid] >= key:
+              hi = mid
           else:
               lo = mid + 1
-      return -1
+      return lo
   `;
 
     return (
       <div>
         <div className="Container">
           <div className="ArrowContainer">
-            <div id="basic-arr-mid" className="ArrowMid">
+            <div id="cond-arr-mid" className="ArrowMid">
               <ArrowDownOutlined />
               <span>M</span>
             </div>
@@ -180,18 +178,21 @@ class BasicBinarySearch extends React.Component {
           <div className="SquaresContainer">
             {arr.map((x, i) => (
               <div key={i} className="SingleSquare">
-                <div id={"basic-s-" + i} className="Square Basic">
+                <div id={"cond-s-" + i} className="Square Cond">
                   <span className="Num">{x}</span>
                 </div>
               </div>
             ))}
+            <div className="SingleSquare">
+              <div className="Square Dotted"></div>
+            </div>
           </div>
           <div className="ArrowContainer">
-            <div id="basic-arr-lo" className="ArrowLo">
+            <div id="cond-arr-lo" className="ArrowLo">
               <ArrowUpOutlined />
               <span>L</span>
             </div>
-            <div id="basic-arr-hi" className="ArrowHi">
+            <div id="cond-arr-hi" className="ArrowHi">
               <ArrowUpOutlined />
               <span>R</span>
             </div>
@@ -249,4 +250,4 @@ class BasicBinarySearch extends React.Component {
   }
 }
 
-export default BasicBinarySearch;
+export default BinarySearchCond;

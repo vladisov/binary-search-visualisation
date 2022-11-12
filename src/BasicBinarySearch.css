@@ -52,3 +52,7 @@ body {
 .Button {
   margin-left: 20px;
 }
+
+.Dotted {
+  border-style: dashed;
+}
