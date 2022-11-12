@@ -3,9 +3,9 @@ body {
   font-weight: 400;
 }
 .Square {
-  height: 50px;
-  width: 50px;
-  border-radius: 4px;
+  height: 35px;
+  width: 35px;
+  border-radius: 1px;
   border-color: black;
   border: 1px;
   border-style: solid;
@@ -18,7 +18,7 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 10px;
+  gap: 2px;
   margin-top: 20px;
   margin-left: 20px;
 }
@@ -34,7 +34,7 @@ body {
   margin-left: 35px;
 }
 .Num {
-  font-size: 22px;
+  font-size: 14px;
 }
 .ArrowHi,
 .ArrowLo,
