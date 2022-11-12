@@ -1,5 +1,4 @@
 import BinarySearchWrapper from "./BinarySearchWrapper";
-import { animate } from "motion";
 
 const BinarySearchConditional = () => {
   const code = `
@@ -66,6 +65,7 @@ const BinarySearchConditional = () => {
       right_square={true}
       allOptions={true}
       insertOnFind={true}
+      isInput={true}
     />
   );
 };

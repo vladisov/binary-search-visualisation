@@ -62,6 +62,7 @@ const BinarySearchEuler = () => {
       right_square={true}
       left_square={true}
       margin={35}
+      isInput={false}
     />
   );
 };

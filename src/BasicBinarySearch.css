@@ -31,7 +31,7 @@ body {
   flex-direction: column;
 }
 .ArrowContainer {
-  margin-left: 35px;
+  margin-left: 29px;
 }
 .Num {
   font-size: 14px;
@@ -55,4 +55,14 @@ body {
 
 .Dotted {
   border-style: dashed;
+}
+
+.Arrow-nested {
+  display: flex;
+  flex-direction: column;
+}
+
+.Caption {
+  font-size: 11px;
+  line-height: 8px;
 }

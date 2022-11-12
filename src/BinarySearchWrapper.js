@@ -2,7 +2,7 @@ import "./BasicBinarySearch.css";
 import { animate } from "motion";
 import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
 import "@fontsource/roboto";
-import { Button, Select, Row, Col } from "antd";
+import { Button, Select, Row, Col, InputNumber } from "antd";
 import React from "react";
 import BasicBSCodeBlock from "./components/BasicBSCodeBlock";
 
@@ -91,7 +91,7 @@ class BinarySearchWrapper extends React.Component {
     animate(
       className,
       {
-        marginLeft: base_margin + index * 36.5 + "px",
+        marginLeft: base_margin + index * 36.7 + "px",
         opacity: opacity ?? 1,
       },
       { delay: 0, duration: 1 }
@@ -204,20 +204,10 @@ class BinarySearchWrapper extends React.Component {
     this.reset();
   }
 
-  // componentDidUpdate(nextProps, nextState) {
-  //   const { arr } = this.state;
-  //   const new_arr = nextState.arr;
-  //   if (new_arr.length > arr.length) {
-  //     console.log(arr);
-  //     console.log(new_arr);
-  //     this.markOut(0, arr.length - 1, 0, new_arr);
-  //   }
-  // }
-
   render() {
     let { lo, hi, mid, arr, target } = this.state;
     let { move, reset, color, markOut, insert } = this;
-    let { next, prefix, insertOnFind } = this.props;
+    let { next, prefix, insertOnFind, isInput } = this.props;
 
     const callNext = () => {
       next(
@@ -233,10 +223,7 @@ class BinarySearchWrapper extends React.Component {
         insertOnFind,
         insert,
         (nlo, nhi, nmid, ntarget) => {
-          lo = nlo;
-          hi = nhi;
-          mid = nmid;
-          target = ntarget;
+          this.setState({ lo: nlo, hi: nhi, mid: nmid, target: ntarget });
         }
       );
     };
@@ -246,8 +233,10 @@ class BinarySearchWrapper extends React.Component {
         <div className="Container">
           <div className="ArrowContainer">
             <div id={`${prefix}-arr-mid`} className="ArrowMid">
-              <ArrowDownOutlined />
-              <span>M</span>
+              <div className="Arrow-nested">
+                <span className="Caption">mid</span>
+                <ArrowDownOutlined />
+              </div>
             </div>
           </div>
           <div className="SquaresContainer">
@@ -271,12 +260,18 @@ class BinarySearchWrapper extends React.Component {
           </div>
           <div className="ArrowContainer">
             <div id={`${prefix}-arr-lo`} className="ArrowLo">
-              <ArrowUpOutlined />
-              <span>L</span>
+              <div className="Arrow-nested">
+                <ArrowUpOutlined />
+                <span className="Caption">{hi === lo ? "both" : "left"}</span>
+              </div>
             </div>
             <div id={`${prefix}-arr-hi`} className="ArrowHi">
-              <ArrowUpOutlined />
-              <span>R</span>
+              {hi !== lo ? (
+                <div className="Arrow-nested">
+                  <ArrowUpOutlined />
+                  <span className="Caption">{hi === lo ? "" : "right"}</span>
+                </div>
+              ) : null}
             </div>
           </div>
           <div className="ButtonContainer">
@@ -299,23 +294,37 @@ class BinarySearchWrapper extends React.Component {
             <Button type="dashed" className="Button" onClick={() => reset()}>
               Reset
             </Button>
-            <Select
-              showSearch
-              style={{ width: 100, marginLeft: "20px" }}
-              placeholder="Set Target"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option?.label ?? "").includes(input)
-              }
-              filterSort={(optionA, optionB) => optionA.value - optionB.value}
-              onSelect={(selected) => {
-                this.setState({ target: Number(selected) }, () => {
-                  this.reset();
-                });
-              }}
-              value={this.state.target}
-              options={this.state.targetOptions}
-            />
+            {isInput ? (
+              <InputNumber
+                style={{ width: 100, marginLeft: "20px" }}
+                min={-100}
+                max={100}
+                defaultValue={10}
+                onChange={(num) => {
+                  this.setState({ target: Number(num) }, () => {
+                    this.reset();
+                  });
+                }}
+              />
+            ) : (
+              <Select
+                showSearch
+                style={{ width: 100, marginLeft: "20px" }}
+                placeholder="Set Target"
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  (option?.label ?? "").includes(input)
+                }
+                filterSort={(optionA, optionB) => optionA.value - optionB.value}
+                onSelect={(selected) => {
+                  this.setState({ target: Number(selected) }, () => {
+                    this.reset();
+                  });
+                }}
+                value={this.state.target}
+                options={this.state.targetOptions}
+              />
+            )}
           </div>
         </div>
         <Row gutter={8} style={{ marginTop: "20px", width: "800px" }}>

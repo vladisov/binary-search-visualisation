@@ -61,6 +61,7 @@ const BasicBinarySearch = () => {
       lo={0}
       hi={-1}
       next={next}
+      isInput={false}
     />
   );
 };
