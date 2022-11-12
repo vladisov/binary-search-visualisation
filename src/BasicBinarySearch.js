@@ -8,7 +8,7 @@ const BasicBinarySearch = () => {
         mid = lo + (hi - lo) // 2
         if arr[mid] == key:
             return mid
-        elif arr[mid] < key:
+        elif key < arr[mid]:
             hi = mid - 1
         else:
             lo = mid + 1

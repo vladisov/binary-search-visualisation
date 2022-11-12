@@ -6,7 +6,7 @@ const BinarySearchConditional = () => {
     lo, hi = 0, len(arr)
     while lo < hi:
         mid = lo + (hi - lo) // 2
-        if arr[mid] >= key:
+        if key <= arr[mid]:
             hi = mid
         else:
             lo = mid + 1
