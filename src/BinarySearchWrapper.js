@@ -22,49 +22,68 @@ class BinarySearchWrapper extends React.Component {
   }
 
   insert = (el) => {
-    this.moveAllFromIndex(5);
+    const idx = this.findPos(el);
+    this.moveAndInsert(idx, el);
   };
 
-  moveAllFromIndex = (start) => {
-    const base_margin = this.props.margin ?? 0;
+  findPos = (el) => {
     const { arr } = this.state;
-    animate(
+    let lo = 0;
+    let hi = arr.length;
+    while (lo < hi) {
+      const mid = Math.floor(lo + (hi - lo) / 2);
+      if (el <= arr[mid]) {
+        hi = mid;
+      } else {
+        lo = mid + 1;
+      }
+    }
+    return lo;
+  };
+
+  moveAndInsert = async (start, el) => {
+    const { arr } = this.state;
+
+    await animate(
       `#${this.props.prefix}-s-${start}`,
       {
         marginLeft: 35 + "px",
       },
       { duration: 0.3 }
-    ).finished.then(() => {
-      animate(
-        `#${this.props.prefix}-s-${start}`,
-        {
-          marginLeft: 0 + "px",
-        },
-        { duration: 0 }
-      ).finished.then(() => {
-        this.setState(
-          {
-            arr: [0, 1, 2, 3, 4, 4.5, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-          },
-          () => {}
-        );
-        animate(
-          `#${this.props.prefix}-s-${start}`,
-          {
-            opacity: 0,
-          },
-          { duration: 0 }
-        ).finished.then(() => {
-          animate(
-            `#${this.props.prefix}-s-${start}`,
-            {
-              opacity: 1,
-            },
-            { duration: 0.5 }
-          );
-        });
-      });
-    });
+    ).finished;
+    await animate(
+      `#${this.props.prefix}-s-${start}`,
+      {
+        marginLeft: 0 + "px",
+      },
+      { duration: 0 }
+    );
+    arr.splice(start, 0, el);
+
+    this.setState(
+      {
+        arr,
+      },
+      () => {
+        this.markOut(0, start, 0, 0);
+        this.color(`#${this.props.prefix}-s-${start}`, "#53e089", 0);
+      }
+    );
+
+    animate(
+      `#${this.props.prefix}-s-${start}`,
+      {
+        opacity: 0,
+      },
+      { duration: 0 }
+    );
+    await animate(
+      `#${this.props.prefix}-s-${start}`,
+      {
+        opacity: 1,
+      },
+      { duration: 0.5 }
+    ).finished;
   };
 
   move = (index, className, opacity) => {
@@ -79,13 +98,13 @@ class BinarySearchWrapper extends React.Component {
     );
   };
 
-  color = (selector, color) => {
+  color = (selector, color, delay) => {
     animate(
       selector,
       {
         backgroundColor: color,
       },
-      { delay: 0.3, duration: 1 }
+      { delay: delay ?? 0.3, duration: 1 }
     );
   };
 
@@ -101,23 +120,24 @@ class BinarySearchWrapper extends React.Component {
     }
   };
 
-  markOut = (lo, hi) => {
+  markOut = (lo, hi, duration, delay) => {
+    const arr = this.state.arr;
     for (let i = 0; i < lo; i++) {
       animate(
         `#${this.props.prefix}-s-${i}`,
         {
           opacity: 0.2,
         },
-        { delay: 0.1, duration: 0.5 }
+        { delay: delay ?? 0.1, duration: duration ?? 0.5 }
       );
     }
-    for (let i = hi + 1; i < this.state.arr.length; i++) {
+    for (let i = hi + 1; i < arr.length; i++) {
       animate(
         `#${this.props.prefix}-s-${i}`,
         {
           opacity: 0.2,
         },
-        { delay: 0.1, duration: 0.5 }
+        { delay: delay ?? 0.1, duration: duration ?? 0.5 }
       );
     }
   };
@@ -126,7 +146,7 @@ class BinarySearchWrapper extends React.Component {
     const size = this.getInRange(5, 20);
     let set = new Set();
     for (let i = 0; i < size; i++) {
-      set.add(this.getInRange(-100, 100));
+      set.add(this.getInRange(-25, 25));
     }
     const arr = Array.from(set);
     arr.sort((a, b) => a - b);
@@ -139,12 +159,23 @@ class BinarySearchWrapper extends React.Component {
   };
 
   getTargets = (arr) => {
-    return arr.map((x, i) => {
-      return {
-        label: String(x),
-        value: String(x),
-      };
-    });
+    if (this.props.allOptions) {
+      const options = [];
+      for (let i = arr[0] - 1; i <= arr[arr.length - 1] + 1; i++) {
+        options.push({
+          label: String(i),
+          value: String(i),
+        });
+      }
+      return options;
+    } else {
+      return arr.map((x, i) => {
+        return {
+          label: String(x),
+          value: String(x),
+        };
+      });
+    }
   };
 
   reset = (arr, target) => {
@@ -173,10 +204,20 @@ class BinarySearchWrapper extends React.Component {
     this.reset();
   }
 
+  // componentDidUpdate(nextProps, nextState) {
+  //   const { arr } = this.state;
+  //   const new_arr = nextState.arr;
+  //   if (new_arr.length > arr.length) {
+  //     console.log(arr);
+  //     console.log(new_arr);
+  //     this.markOut(0, arr.length - 1, 0, new_arr);
+  //   }
+  // }
+
   render() {
     let { lo, hi, mid, arr, target } = this.state;
-    let { move, reset, color, markOut } = this;
-    let { next, prefix } = this.props;
+    let { move, reset, color, markOut, insert } = this;
+    let { next, prefix, insertOnFind } = this.props;
 
     const callNext = () => {
       next(
@@ -189,6 +230,8 @@ class BinarySearchWrapper extends React.Component {
         color,
         markOut,
         prefix,
+        insertOnFind,
+        insert,
         (nlo, nhi, nmid, ntarget) => {
           lo = nlo;
           hi = nhi;
@@ -253,13 +296,7 @@ class BinarySearchWrapper extends React.Component {
             >
               Randomize me
             </Button>
-            <Button
-              type="dashed"
-              className="Button"
-              onClick={() => {
-                this.insert();
-              }}
-            >
+            <Button type="dashed" className="Button" onClick={() => reset()}>
               Reset
             </Button>
             <Select
@@ -272,7 +309,9 @@ class BinarySearchWrapper extends React.Component {
               }
               filterSort={(optionA, optionB) => optionA.value - optionB.value}
               onSelect={(selected) => {
-                this.setState({ target: Number(selected) });
+                this.setState({ target: Number(selected) }, () => {
+                  this.reset();
+                });
               }}
               value={this.state.target}
               options={this.state.targetOptions}

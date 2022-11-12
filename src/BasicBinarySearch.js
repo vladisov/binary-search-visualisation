@@ -25,6 +25,8 @@ const BasicBinarySearch = () => {
     color,
     markOut,
     prefix,
+    isInsertOnFind,
+    insert,
     callback
   ) => {
     if (lo > hi || arr[mid] === target) {

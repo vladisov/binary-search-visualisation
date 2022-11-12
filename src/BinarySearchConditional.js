@@ -1,4 +1,5 @@
 import BinarySearchWrapper from "./BinarySearchWrapper";
+import { animate } from "motion";
 
 const BinarySearchConditional = () => {
   const code = `
@@ -23,9 +24,14 @@ const BinarySearchConditional = () => {
     color,
     markOut,
     prefix,
+    isInsertOnFind,
+    insert,
     callback
   ) => {
     if (lo >= hi || arr[mid] === target) {
+      if (isInsertOnFind && arr.indexOf(target) === -1) {
+        insert(target);
+      }
       return;
     }
     const currMid = Math.floor(lo + (hi - lo) / 2);
@@ -58,6 +64,8 @@ const BinarySearchConditional = () => {
       hi={0}
       next={next}
       right_square={true}
+      allOptions={true}
+      insertOnFind={true}
     />
   );
 };

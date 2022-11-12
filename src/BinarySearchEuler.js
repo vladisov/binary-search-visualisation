@@ -23,6 +23,8 @@ const BinarySearchEuler = () => {
     color,
     markOut,
     prefix,
+    isInsertOnFind,
+    insert,
     callback
   ) => {
     if (hi - lo <= 1 || arr[mid] === target) {
