@@ -27,6 +27,7 @@ const BinarySearchEuler = () => {
     lo,
     hi,
     mid,
+    ans,
     move,
     color,
     markOut,
@@ -45,7 +46,7 @@ const BinarySearchEuler = () => {
       if (arr[mid] === target) {
         color(`#${prefix}-s-${mid}`, "#53e089");
       }
-      callback(lo, hi, mid, target);
+      callback(lo, hi, mid, ans, target);
       return;
     }
     if (target < arr[mid]) {
@@ -57,7 +58,7 @@ const BinarySearchEuler = () => {
       move(lo, `#${prefix}-arr-lo`);
       markOut(lo, hi);
     }
-    callback(lo, hi, mid, target);
+    callback(lo, hi, mid, ans, target);
   };
 
   return (

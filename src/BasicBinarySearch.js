@@ -29,6 +29,7 @@ const BasicBinarySearch = () => {
     lo,
     hi,
     mid,
+    ans,
     move,
     color,
     markOut,
@@ -47,7 +48,7 @@ const BasicBinarySearch = () => {
       if (arr[mid] === target) {
         color(`#${prefix}-s-${mid}`, "#53e089");
       }
-      callback(lo, hi, mid, target);
+      callback(lo, hi, mid, ans, target);
       return;
     }
     if (arr[mid] < target) {
@@ -59,7 +60,7 @@ const BasicBinarySearch = () => {
       move(hi, `#${prefix}-arr-hi`);
       markOut(lo, hi);
     }
-    callback(lo, hi, mid, target);
+    callback(lo, hi, mid, ans, target);
   };
 
   return (

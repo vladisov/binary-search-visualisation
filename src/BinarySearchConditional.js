@@ -27,6 +27,7 @@ const BinarySearchConditional = () => {
     lo,
     hi,
     mid,
+    ans,
     move,
     color,
     markOut,
@@ -48,7 +49,7 @@ const BinarySearchConditional = () => {
       if (arr[mid] === target) {
         color(`#${prefix}-s-${mid}`, "#53e089");
       }
-      callback(lo, hi, mid, target);
+      callback(lo, hi, mid, ans, target);
       return;
     }
     if (arr[mid] >= target) {
@@ -60,7 +61,7 @@ const BinarySearchConditional = () => {
       move(lo, `#${prefix}-arr-lo`);
       markOut(lo, hi);
     }
-    callback(lo, hi, mid, target);
+    callback(lo, hi, mid, ans, target);
   };
 
   return (

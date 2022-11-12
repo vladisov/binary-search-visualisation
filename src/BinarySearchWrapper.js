@@ -18,6 +18,7 @@ class BinarySearchWrapper extends React.Component {
       lo: this.props.lo,
       hi: arr_gen.length + this.props.hi,
       mid: -1,
+      ans: -1,
       target: 5,
       targetOptions,
     };
@@ -100,14 +101,25 @@ class BinarySearchWrapper extends React.Component {
     );
   };
 
-  color = (selector, color, delay) => {
-    animate(
-      selector,
-      {
-        backgroundColor: color,
-      },
-      { delay: delay ?? 0.3, duration: 1 }
-    );
+  color = (selector, color, delay, opacity) => {
+    if (opacity) {
+      animate(
+        selector,
+        {
+          backgroundColor: color,
+          opacity,
+        },
+        { delay: delay ?? 0.3, duration: 1 }
+      );
+    } else {
+      animate(
+        selector,
+        {
+          backgroundColor: color,
+        },
+        { delay: delay ?? 0.3, duration: 1 }
+      );
+    }
   };
 
   markAllIn = (lo, hi) => {
@@ -125,6 +137,9 @@ class BinarySearchWrapper extends React.Component {
   markOut = (lo, hi, duration, delay) => {
     const arr = this.state.arr;
     for (let i = 0; i < lo; i++) {
+      // if (i === hi) {
+      //   continue;
+      // }
       animate(
         `#${this.props.prefix}-s-${i}`,
         {
@@ -134,6 +149,9 @@ class BinarySearchWrapper extends React.Component {
       );
     }
     for (let i = hi + 1; i < arr.length; i++) {
+      // if (i === lo) {
+      //   continue;
+      // }
       animate(
         `#${this.props.prefix}-s-${i}`,
         {
@@ -206,6 +224,7 @@ class BinarySearchWrapper extends React.Component {
         lo: this.props.lo,
         hi: arr_gen.length + this.props.hi,
         mid: -1,
+        ans: -1,
         target: target ?? this.state.target,
         targetOptions,
       },
@@ -224,7 +243,7 @@ class BinarySearchWrapper extends React.Component {
   }
 
   render() {
-    let { lo, hi, mid, arr, target } = this.state;
+    let { lo, hi, mid, ans, arr, target } = this.state;
     let { move, reset, color, markOut, insert } = this;
     let { next, prefix, insertOnFind, isInput } = this.props;
 
@@ -235,14 +254,21 @@ class BinarySearchWrapper extends React.Component {
         lo,
         hi,
         mid,
+        ans,
         move,
         color,
         markOut,
         prefix,
         insertOnFind,
         insert,
-        (nlo, nhi, nmid, ntarget) => {
-          this.setState({ lo: nlo, hi: nhi, mid: nmid, target: ntarget });
+        (nlo, nhi, nmid, nans, ntarget) => {
+          this.setState({
+            lo: nlo,
+            hi: nhi,
+            mid: nmid,
+            ans: nans,
+            target: ntarget,
+          });
         }
       );
     };
@@ -259,7 +285,7 @@ class BinarySearchWrapper extends React.Component {
                 style={{ width: 100, marginLeft: "10px" }}
                 min={-100}
                 max={100}
-                defaultValue={10}
+                defaultValue={5}
                 onChange={(num) => {
                   this.setState({ target: Number(num) }, () => {
                     this.reset(null, num);
@@ -278,7 +304,7 @@ class BinarySearchWrapper extends React.Component {
                 filterSort={(optionA, optionB) => optionA.value - optionB.value}
                 onSelect={(selected) => {
                   this.setState({ target: Number(selected) }, () => {
-                    this.reset(null, selected);
+                    this.reset(null, Number(selected));
                   });
                 }}
                 value={this.state.target}

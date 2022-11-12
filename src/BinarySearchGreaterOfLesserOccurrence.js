@@ -10,16 +10,16 @@ const BinarySearchGreaterOfLesserOccurrence = () => {
   semper risus in hendrerit gravida.`;
 
   const code = `
-  def binary_search_first_occ(arr, key):
+  def binary_search_greatest_of_lesser(arr, key):
     lo, hi, ans = 0, len(arr) - 1, -1
     while lo <= hi:
         mid = low + (hi - lo + 1) // 2
         if arr[mid] == key:
-            ans = mid
-            hi = mid - 1
+            lo = mid + 1
         elif key < arr[mid]:
             hi = mid - 1
         if key > arr[mid]:
+            ans = mid
             lo = mid + 1
     return ans
 `;
@@ -30,6 +30,7 @@ const BinarySearchGreaterOfLesserOccurrence = () => {
     lo,
     hi,
     mid,
+    ans,
     move,
     color,
     markOut,
@@ -38,34 +39,30 @@ const BinarySearchGreaterOfLesserOccurrence = () => {
     insert,
     callback
   ) => {
-    let ans = -1;
     if (lo > hi) {
       return;
     }
-    const currMid = Math.floor(lo + (hi - lo + 1) / 2);
-    if (currMid !== mid) {
-      mid = currMid;
-      move(currMid, `#${prefix}-arr-mid`);
-      if (arr[mid] === target) {
-        ans = mid;
-        hi = mid - 1;
-        move(hi, `#${prefix}-arr-hi`);
-      }
-    } else if (target < arr[mid]) {
-      hi = mid - 1;
-      move(hi, `#${prefix}-arr-hi`);
-      markOut(lo, hi);
-    } else if (target > arr[mid]) {
+    mid = Math.floor(lo + (hi - lo + 1) / 2);
+    if (arr[mid] === target) {
       lo = mid + 1;
       move(lo, `#${prefix}-arr-lo`);
-      markOut(lo, hi);
+      markOut(Math.min(lo, ans), Math.max(hi, mid));
+    }
+    if (target < arr[mid]) {
+      hi = mid - 1;
+      move(hi, `#${prefix}-arr-hi`);
+      markOut(lo, Math.max(hi, mid));
+    } else if (target > arr[mid]) {
+      ans = mid;
+      move(ans, `#${prefix}-arr-mid`);
+      lo = mid + 1;
+      move(lo, `#${prefix}-arr-lo`);
+      markOut(lo, Math.max(hi, mid));
     }
     if (lo > hi) {
-      if (arr[ans] === target) {
-        color(`#${prefix}-s-${ans}`, "#53e089");
-      }
+      color(`#${prefix}-s-${ans}`, "#53e089", 0.3, 1);
     }
-    callback(lo, hi, mid, target);
+    callback(lo, hi, mid, ans, target);
   };
 
   return (
@@ -77,7 +74,7 @@ const BinarySearchGreaterOfLesserOccurrence = () => {
       </Row>
 
       <BinarySearchWrapper
-        prefix="first"
+        prefix="gr_less"
         code={code}
         lo={0}
         hi={-1}
@@ -85,8 +82,7 @@ const BinarySearchGreaterOfLesserOccurrence = () => {
         right_square={false}
         left_square={false}
         isInput={false}
-        duplicate={true}
-        arr={[1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5]}
+        duplicate={false}
       />
     </Row>
   );

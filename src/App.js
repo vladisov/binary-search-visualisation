@@ -6,6 +6,7 @@ import BinarySearchEuler from "./BinarySearchEuler";
 import BinarySearchFirstOccurrence from "./BinarySearchFirstOccurrence";
 import BinarySearchLastOccurrence from "./BinarySearchLastOccurrence";
 import BinarySearchFirstOfGreaterOccurrence from "./BinarySearchFirstOfGreaterOccurrence";
+import BinarySearchGreaterOfLesserOccurrence from "./BinarySearchGreaterOfLesserOccurrence";
 
 const App = () => {
   return (
@@ -37,6 +38,10 @@ const App = () => {
               <Divider>Search first of greater than target</Divider>
               <Row justify="center">
                 <BinarySearchFirstOfGreaterOccurrence />
+              </Row>
+              <Divider>Search greatest of less than target</Divider>
+              <Row justify="center">
+                <BinarySearchGreaterOfLesserOccurrence />
               </Row>
             </Col>
           </Card>
