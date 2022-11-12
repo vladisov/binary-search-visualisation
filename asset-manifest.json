@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/binary-search-visualisation/static/css/main.e268494e.css",
-    "main.js": "/binary-search-visualisation/static/js/main.498a933e.js",
+    "main.css": "/binary-search-visualisation/static/css/main.81b4eaeb.css",
+    "main.js": "/binary-search-visualisation/static/js/main.2a19966e.js",
     "react-syntax-highlighter/refractor-core-import.js": "/binary-search-visualisation/static/js/react-syntax-highlighter/refractor-core-import.33552b3c.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js": "/binary-search-visualisation/static/js/react-syntax-highlighter_languages_refractor_abap.9e83ed63.chunk.js",
     "react-syntax-highlighter_languages_refractor_actionscript.js": "/binary-search-visualisation/static/js/react-syntax-highlighter_languages_refractor_actionscript.068f28e1.chunk.js",
@@ -164,8 +164,8 @@
     "static/media/roboto-vietnamese-400-normal.woff2": "/binary-search-visualisation/static/media/roboto-vietnamese-400-normal.3230f9b040f3c630e0c3.woff2",
     "static/media/roboto-greek-ext-400-normal.woff2": "/binary-search-visualisation/static/media/roboto-greek-ext-400-normal.169619821ea93019d1bb.woff2",
     "index.html": "/binary-search-visualisation/index.html",
-    "main.e268494e.css.map": "/binary-search-visualisation/static/css/main.e268494e.css.map",
-    "main.498a933e.js.map": "/binary-search-visualisation/static/js/main.498a933e.js.map",
+    "main.81b4eaeb.css.map": "/binary-search-visualisation/static/css/main.81b4eaeb.css.map",
+    "main.2a19966e.js.map": "/binary-search-visualisation/static/js/main.2a19966e.js.map",
     "refractor-core-import.33552b3c.chunk.js.map": "/binary-search-visualisation/static/js/react-syntax-highlighter/refractor-core-import.33552b3c.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abap.9e83ed63.chunk.js.map": "/binary-search-visualisation/static/js/react-syntax-highlighter_languages_refractor_abap.9e83ed63.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_actionscript.068f28e1.chunk.js.map": "/binary-search-visualisation/static/js/react-syntax-highlighter_languages_refractor_actionscript.068f28e1.chunk.js.map",
@@ -321,7 +321,7 @@
     "787.f136c952.chunk.js.map": "/binary-search-visualisation/static/js/787.f136c952.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e268494e.css",
-    "static/js/main.498a933e.js"
+    "static/css/main.81b4eaeb.css",
+    "static/js/main.2a19966e.js"
   ]
 }
