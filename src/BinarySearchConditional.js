@@ -1,6 +1,14 @@
 import BinarySearchWrapper from "./BinarySearchWrapper";
+import { Col, Row } from "antd";
 
 const BinarySearchConditional = () => {
+  const explanation = `
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Venenatis tellus in metus vulputate. Purus sit amet volutpat
+  consequat mauris nunc congue nisi vitae. Mollis nunc sed id
+  semper risus in hendrerit gravida.`;
+
   const code = `
   def binary_search_conditional(arr, key):
     lo, hi = 0, len(arr)
@@ -56,17 +64,24 @@ const BinarySearchConditional = () => {
   };
 
   return (
-    <BinarySearchWrapper
-      prefix="cond"
-      code={code}
-      lo={0}
-      hi={0}
-      next={next}
-      right_square={true}
-      allOptions={true}
-      insertOnFind={true}
-      isInput={true}
-    />
+    <Row justify="center">
+      <Row justify="center">
+        <Col span={16}>
+          <p>{explanation}</p>
+        </Col>
+      </Row>
+      <BinarySearchWrapper
+        prefix="cond"
+        code={code}
+        lo={0}
+        hi={0}
+        next={next}
+        right_square={true}
+        allOptions={true}
+        insertOnFind={true}
+        isInput={true}
+      />
+    </Row>
   );
 };
 

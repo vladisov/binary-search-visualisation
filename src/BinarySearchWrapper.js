@@ -231,6 +231,42 @@ class BinarySearchWrapper extends React.Component {
     return (
       <div>
         <div className="Container">
+          <div>
+            <span style={{ marginLeft: "20px", marginBottom: "5px" }}>
+              Target:{" "}
+            </span>
+            {isInput ? (
+              <InputNumber
+                style={{ width: 100, marginLeft: "10px" }}
+                min={-100}
+                max={100}
+                defaultValue={10}
+                onChange={(num) => {
+                  this.setState({ target: Number(num) }, () => {
+                    this.reset(null, num);
+                  });
+                }}
+              />
+            ) : (
+              <Select
+                showSearch
+                style={{ width: 100, marginLeft: "10px" }}
+                placeholder="Set Target"
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  (option?.label ?? "").includes(input)
+                }
+                filterSort={(optionA, optionB) => optionA.value - optionB.value}
+                onSelect={(selected) => {
+                  this.setState({ target: Number(selected) }, () => {
+                    this.reset(null, selected);
+                  });
+                }}
+                value={this.state.target}
+                options={this.state.targetOptions}
+              />
+            )}
+          </div>
           <div className="ArrowContainer">
             <div id={`${prefix}-arr-mid`} className="ArrowMid">
               <div className="Arrow-nested">
@@ -294,37 +330,6 @@ class BinarySearchWrapper extends React.Component {
             <Button type="dashed" className="Button" onClick={() => reset()}>
               Reset
             </Button>
-            {isInput ? (
-              <InputNumber
-                style={{ width: 100, marginLeft: "20px" }}
-                min={-100}
-                max={100}
-                defaultValue={10}
-                onChange={(num) => {
-                  this.setState({ target: Number(num) }, () => {
-                    this.reset();
-                  });
-                }}
-              />
-            ) : (
-              <Select
-                showSearch
-                style={{ width: 100, marginLeft: "20px" }}
-                placeholder="Set Target"
-                optionFilterProp="children"
-                filterOption={(input, option) =>
-                  (option?.label ?? "").includes(input)
-                }
-                filterSort={(optionA, optionB) => optionA.value - optionB.value}
-                onSelect={(selected) => {
-                  this.setState({ target: Number(selected) }, () => {
-                    this.reset();
-                  });
-                }}
-                value={this.state.target}
-                options={this.state.targetOptions}
-              />
-            )}
           </div>
         </div>
         <Row gutter={8} style={{ marginTop: "20px", width: "800px" }}>

@@ -1,6 +1,14 @@
 import BinarySearchWrapper from "./BinarySearchWrapper";
+import { Col, Row } from "antd";
 
 const BinarySearchEuler = () => {
+  const explanation = `
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Venenatis tellus in metus vulputate. Purus sit amet volutpat
+  consequat mauris nunc congue nisi vitae. Mollis nunc sed id
+  semper risus in hendrerit gravida.`;
+
   const code = `
   def binary_search_euler(arr, key):
     lo, hi = -1, n
@@ -53,17 +61,25 @@ const BinarySearchEuler = () => {
   };
 
   return (
-    <BinarySearchWrapper
-      prefix="euler"
-      code={code}
-      lo={-1}
-      hi={0}
-      next={next}
-      right_square={true}
-      left_square={true}
-      margin={35}
-      isInput={true}
-    />
+    <Row justify="center">
+      <Row justify="center">
+        <Col span={16}>
+          <p>{explanation}</p>
+        </Col>
+      </Row>
+
+      <BinarySearchWrapper
+        prefix="euler"
+        code={code}
+        lo={-1}
+        hi={0}
+        next={next}
+        right_square={true}
+        left_square={true}
+        margin={35}
+        isInput={false}
+      />
+    </Row>
   );
 };
 

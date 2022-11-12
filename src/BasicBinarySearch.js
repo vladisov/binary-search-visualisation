@@ -1,6 +1,14 @@
 import BinarySearchWrapper from "./BinarySearchWrapper";
+import { Col, Row } from "antd";
 
 const BasicBinarySearch = () => {
+  const explanation = `
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  Venenatis tellus in metus vulputate. Purus sit amet volutpat
+  consequat mauris nunc congue nisi vitae. Mollis nunc sed id
+  semper risus in hendrerit gravida.`;
+
   const code = `
   def binary_search(arr, key):
     lo, hi = 0, len(arr) - 1
@@ -55,14 +63,22 @@ const BasicBinarySearch = () => {
   };
 
   return (
-    <BinarySearchWrapper
-      prefix="basic"
-      code={code}
-      lo={0}
-      hi={-1}
-      next={next}
-      isInput={false}
-    />
+    <Row justify="center">
+      <Row justify="center">
+        <Col span={16}>
+          <p>{explanation}</p>
+        </Col>
+      </Row>
+
+      <BinarySearchWrapper
+        prefix="basic"
+        code={code}
+        lo={0}
+        hi={-1}
+        next={next}
+        isInput={false}
+      />
+    </Row>
   );
 };
 

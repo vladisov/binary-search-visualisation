@@ -11,17 +11,17 @@ const App = () => {
         <Col span={16}>
           <Card bordered={true}>
             <Col gutter={16}>
-              <Divider>Regular binary search</Divider>
+              <Divider>Try find</Divider>
               <Row justify="center">
                 <BasicBinarySearch />
+              </Row>
+              <Divider>Same but shorter</Divider>
+              <Row justify="center">
+                <BinarySearchEuler />
               </Row>
               <Divider>Search or Insert</Divider>
               <Row justify="center">
                 <BinarySearchConditional />
-              </Row>
-              <Divider>Another way</Divider>
-              <Row justify="center">
-                <BinarySearchEuler />
               </Row>
             </Col>
           </Card>
