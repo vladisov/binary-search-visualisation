@@ -9,7 +9,9 @@ import BasicBSCodeBlock from "./components/BasicBSCodeBlock";
 class BinarySearchWrapper extends React.Component {
   constructor(props) {
     super(props);
-    const arr_gen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    const arr_gen = props.arr ?? [
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+    ];
     const targetOptions = this.getTargets(arr_gen);
     this.state = {
       arr: arr_gen,
@@ -142,16 +144,31 @@ class BinarySearchWrapper extends React.Component {
     }
   };
 
-  randomize = () => {
-    const size = this.getInRange(5, 20);
-    let set = new Set();
-    for (let i = 0; i < size; i++) {
-      set.add(this.getInRange(-25, 25));
+  randomize = (duplicate) => {
+    if (duplicate) {
+      const size = this.getInRange(2, 7);
+      let arr = [];
+      for (let i = 0; i < size; i++) {
+        const dup_size = this.getInRange(1, 3);
+        const num = this.getInRange(-25, 25);
+        for (let j = 0; j <= dup_size; j++) {
+          arr.push(num);
+        }
+      }
+      arr.sort((a, b) => a - b);
+      const target = arr[this.getInRange(0, arr.length - 1)];
+      this.reset(arr, target);
+    } else {
+      const size = this.getInRange(5, 20);
+      let set = new Set();
+      for (let i = 0; i < size; i++) {
+        set.add(this.getInRange(-25, 25));
+      }
+      const arr = Array.from(set);
+      arr.sort((a, b) => a - b);
+      const target = arr[this.getInRange(0, arr.length - 1)];
+      this.reset(arr, target);
     }
-    const arr = Array.from(set);
-    arr.sort((a, b) => a - b);
-    const target = arr[this.getInRange(0, arr.length - 1)];
-    this.reset(arr, target);
   };
 
   getInRange = (min, max) => {
@@ -159,6 +176,8 @@ class BinarySearchWrapper extends React.Component {
   };
 
   getTargets = (arr) => {
+    const set = new Set(arr);
+    arr = Array.from(set);
     if (this.props.allOptions) {
       const options = [];
       for (let i = arr[0] - 1; i <= arr[arr.length - 1] + 1; i++) {
@@ -322,7 +341,7 @@ class BinarySearchWrapper extends React.Component {
               type="default"
               className="Button"
               onClick={() => {
-                this.randomize();
+                this.randomize(this.props.duplicate);
               }}
             >
               Randomize me

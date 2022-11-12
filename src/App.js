@@ -3,6 +3,9 @@ import "./App.css";
 import BasicBinarySearch from "./BasicBinarySearch";
 import BinarySearchConditional from "./BinarySearchConditional";
 import BinarySearchEuler from "./BinarySearchEuler";
+import BinarySearchFirstOccurrence from "./BinarySearchFirstOccurrence";
+import BinarySearchLastOccurrence from "./BinarySearchLastOccurrence";
+import BinarySearchFirstOfGreaterOccurrence from "./BinarySearchFirstOfGreaterOccurrence";
 
 const App = () => {
   return (
@@ -22,6 +25,18 @@ const App = () => {
               <Divider>Search or Insert</Divider>
               <Row justify="center">
                 <BinarySearchConditional />
+              </Row>
+              <Divider>Search first occurrence</Divider>
+              <Row justify="center">
+                <BinarySearchFirstOccurrence />
+              </Row>
+              <Divider>Search last occurrence</Divider>
+              <Row justify="center">
+                <BinarySearchLastOccurrence />
+              </Row>
+              <Divider>Search first of greater than target</Divider>
+              <Row justify="center">
+                <BinarySearchFirstOfGreaterOccurrence />
               </Row>
             </Col>
           </Card>
