@@ -13,7 +13,7 @@ const App = () => {
     <div className="AppWrapper">
       <Row justify="center">
         <Col span={16}>
-          <Card bordered={true}>
+          <Card bordered={true} className="AppCard">
             <Col gutter={16}>
               <Divider>Try find</Divider>
               <Row justify="center">
