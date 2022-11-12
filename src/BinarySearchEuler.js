@@ -3,11 +3,10 @@ import { Col, Row } from "antd";
 
 const BinarySearchEuler = () => {
   const explanation = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Venenatis tellus in metus vulputate. Purus sit amet volutpat
-  consequat mauris nunc congue nisi vitae. Mollis nunc sed id
-  semper risus in hendrerit gravida.`;
+  You really value amount of lies of code you write daily, and don't want to die from finger arthritis?
+  Here is a few lines shorter version of the same binary search algorithm as above. A bit tricker with indices, 
+  tho still easy to remember.   
+  `;
 
   const code = `
   def binary_search_euler(arr, key):

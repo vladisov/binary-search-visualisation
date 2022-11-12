@@ -3,11 +3,9 @@ import { Col, Row } from "antd";
 
 const BasicBinarySearch = () => {
   const explanation = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Venenatis tellus in metus vulputate. Purus sit amet volutpat
-  consequat mauris nunc congue nisi vitae. Mollis nunc sed id
-  semper risus in hendrerit gravida.`;
+  The basic implementation of binary search taught in kindergarten. 
+  Gives you -1 if desired element is not present. 
+  Easy to write, easy to remember, never messes with indices. Editor's pick!`;
 
   const code = `
   def binary_search(arr, key):

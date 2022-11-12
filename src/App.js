@@ -15,31 +15,31 @@ const App = () => {
         <Col span={16}>
           <Card bordered={true} className="AppCard">
             <Col gutter={16}>
-              <Divider>Try find</Divider>
+              <Divider>Inclusive One</Divider>
               <Row justify="center">
                 <BasicBinarySearch />
               </Row>
-              <Divider>Same but shorter</Divider>
+              <Divider>Same shit, but shorter</Divider>
               <Row justify="center">
                 <BinarySearchEuler />
               </Row>
-              <Divider>Search or Insert</Divider>
+              <Divider>Search me or Insert me!</Divider>
               <Row justify="center">
                 <BinarySearchConditional />
               </Row>
-              <Divider>Search first occurrence</Divider>
+              <Divider>Try to the find first occurrence</Divider>
               <Row justify="center">
                 <BinarySearchFirstOccurrence />
               </Row>
-              <Divider>Search last occurrence</Divider>
+              <Divider>This one is for the last</Divider>
               <Row justify="center">
                 <BinarySearchLastOccurrence />
               </Row>
-              <Divider>Search first of greater than target</Divider>
+              <Divider>Search the one greater than target</Divider>
               <Row justify="center">
                 <BinarySearchFirstOfGreaterOccurrence />
               </Row>
-              <Divider>Search greatest of less than target</Divider>
+              <Divider>Or less than target</Divider>
               <Row justify="center">
                 <BinarySearchGreaterOfLesserOccurrence />
               </Row>
