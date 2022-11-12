@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/binary-search-visualisation/static/css/main.483ecbae.css",
-    "main.js": "/binary-search-visualisation/static/js/main.029c3960.js",
+    "main.js": "/binary-search-visualisation/static/js/main.252f3051.js",
     "react-syntax-highlighter/refractor-core-import.js": "/binary-search-visualisation/static/js/react-syntax-highlighter/refractor-core-import.33552b3c.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js": "/binary-search-visualisation/static/js/react-syntax-highlighter_languages_refractor_abap.9e83ed63.chunk.js",
     "react-syntax-highlighter_languages_refractor_actionscript.js": "/binary-search-visualisation/static/js/react-syntax-highlighter_languages_refractor_actionscript.068f28e1.chunk.js",
@@ -165,7 +165,7 @@
     "static/media/roboto-greek-ext-400-normal.woff2": "/binary-search-visualisation/static/media/roboto-greek-ext-400-normal.169619821ea93019d1bb.woff2",
     "index.html": "/binary-search-visualisation/index.html",
     "main.483ecbae.css.map": "/binary-search-visualisation/static/css/main.483ecbae.css.map",
-    "main.029c3960.js.map": "/binary-search-visualisation/static/js/main.029c3960.js.map",
+    "main.252f3051.js.map": "/binary-search-visualisation/static/js/main.252f3051.js.map",
     "refractor-core-import.33552b3c.chunk.js.map": "/binary-search-visualisation/static/js/react-syntax-highlighter/refractor-core-import.33552b3c.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abap.9e83ed63.chunk.js.map": "/binary-search-visualisation/static/js/react-syntax-highlighter_languages_refractor_abap.9e83ed63.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_actionscript.068f28e1.chunk.js.map": "/binary-search-visualisation/static/js/react-syntax-highlighter_languages_refractor_actionscript.068f28e1.chunk.js.map",
@@ -322,6 +322,6 @@
   },
   "entrypoints": [
     "static/css/main.483ecbae.css",
-    "static/js/main.029c3960.js"
+    "static/js/main.252f3051.js"
   ]
 }
