@@ -1,0 +1,54 @@
+body {
+  font-family: "Roboto";
+  font-weight: 400;
+}
+.Square {
+  height: 50px;
+  width: 50px;
+  border-radius: 4px;
+  border-color: black;
+  border: 1px;
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.SquaresContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.SingleSquare {
+  display: flex;
+  flex-direction: row;
+}
+.Container {
+  display: flex;
+  flex-direction: column;
+}
+.ArrowContainer {
+  margin-left: 35px;
+}
+.Num {
+  font-size: 22px;
+}
+.ArrowHi,
+.ArrowLo,
+.ArrowMid {
+  display: inline-block;
+  position: absolute;
+}
+
+.ButtonContainer {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.Button {
+  margin-left: 20px;
+}
