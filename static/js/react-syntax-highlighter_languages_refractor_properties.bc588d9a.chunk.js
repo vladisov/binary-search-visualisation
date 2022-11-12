@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkbinary_search_visualisation=self.webpackChunkbinary_search_visualisation||[]).push([[81],{9164:function(s){function a(s){s.languages.properties={comment:/^[ \t]*[#!].*$/m,"attr-value":{pattern:/(^[ \t]*(?:\\(?:\r\n|[\s\S])|[^\\\s:=])+?(?: *[=:] *| ))(?:\\(?:\r\n|[\s\S])|[^\\\r\n])+/m,lookbehind:!0},"attr-name":/^[ \t]*(?:\\(?:\r\n|[\s\S])|[^\\\s:=])+?(?= *[=:] *| )/m,punctuation:/[=:]/}}s.exports=a,a.displayName="properties",a.aliases=[]}}]);
-//# sourceMappingURL=react-syntax-highlighter_languages_refractor_properties.bc588d9a.chunk.js.map
