@@ -21,6 +21,52 @@ class BinarySearchWrapper extends React.Component {
     };
   }
 
+  insert = (el) => {
+    this.moveAllFromIndex(5);
+  };
+
+  moveAllFromIndex = (start) => {
+    const base_margin = this.props.margin ?? 0;
+    const { arr } = this.state;
+    animate(
+      `#${this.props.prefix}-s-${start}`,
+      {
+        marginLeft: 35 + "px",
+      },
+      { duration: 0.3 }
+    ).finished.then(() => {
+      animate(
+        `#${this.props.prefix}-s-${start}`,
+        {
+          marginLeft: 0 + "px",
+        },
+        { duration: 0 }
+      ).finished.then(() => {
+        this.setState(
+          {
+            arr: [0, 1, 2, 3, 4, 4.5, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          },
+          () => {}
+        );
+        animate(
+          `#${this.props.prefix}-s-${start}`,
+          {
+            opacity: 0,
+          },
+          { duration: 0 }
+        ).finished.then(() => {
+          animate(
+            `#${this.props.prefix}-s-${start}`,
+            {
+              opacity: 1,
+            },
+            { duration: 0.5 }
+          );
+        });
+      });
+    });
+  };
+
   move = (index, className, opacity) => {
     const base_margin = this.props.margin ?? 0;
     animate(
@@ -211,7 +257,7 @@ class BinarySearchWrapper extends React.Component {
               type="dashed"
               className="Button"
               onClick={() => {
-                reset();
+                this.insert();
               }}
             >
               Reset
