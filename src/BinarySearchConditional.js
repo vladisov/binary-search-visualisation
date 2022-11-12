@@ -1,18 +1,16 @@
 import BinarySearchWrapper from "./BinarySearchWrapper";
 
-const BasicBinarySearch = () => {
+const BinarySearchConditional = () => {
   const code = `
-  def binary_search(arr, key):
-    lo, hi = 0, len(arr) - 1
-    while lo <= hi:
+  def binary_search_conditional(arr, key):
+    lo, hi = 0, len(arr)
+    while lo < hi:
         mid = lo + (hi - lo) // 2
-        if arr[mid] == key:
-            return mid
-        elif arr[mid] < key:
-            hi = mid - 1
+        if arr[mid] >= key:
+            hi = mid
         else:
             lo = mid + 1
-    return -1
+    return lo
 `;
 
   const next = (
@@ -27,7 +25,7 @@ const BasicBinarySearch = () => {
     prefix,
     callback
   ) => {
-    if (lo > hi || arr[mid] === target) {
+    if (lo >= hi || arr[mid] === target) {
       return;
     }
     const currMid = Math.floor(lo + (hi - lo) / 2);
@@ -40,13 +38,13 @@ const BasicBinarySearch = () => {
       callback(lo, hi, mid, target);
       return;
     }
-    if (arr[mid] < target) {
-      lo = mid + 1;
-      move(lo, `#${prefix}-arr-lo`);
+    if (arr[mid] >= target) {
+      hi = mid;
+      move(hi, `#${prefix}-arr-hi`);
       markOut(lo, hi);
     } else {
-      hi = mid - 1;
-      move(hi, `#${prefix}-arr-hi`);
+      lo = mid + 1;
+      move(lo, `#${prefix}-arr-lo`);
       markOut(lo, hi);
     }
     callback(lo, hi, mid, target);
@@ -54,13 +52,14 @@ const BasicBinarySearch = () => {
 
   return (
     <BinarySearchWrapper
-      prefix="basic"
+      prefix="cond"
       code={code}
       lo={0}
-      hi={-1}
+      hi={0}
       next={next}
+      right_square={true}
     />
   );
 };
 
-export default BasicBinarySearch;
+export default BinarySearchConditional;

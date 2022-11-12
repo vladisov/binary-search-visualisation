@@ -6,15 +6,15 @@ import { Button, Select, Row, Col } from "antd";
 import React from "react";
 import BasicBSCodeBlock from "./components/BasicBSCodeBlock";
 
-class BinarySearchCond extends React.Component {
+class BinarySearchWrapper extends React.Component {
   constructor(props) {
     super(props);
     const arr_gen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     const targetOptions = this.getTargets(arr_gen);
     this.state = {
       arr: arr_gen,
-      lo: 0,
-      hi: arr_gen.length,
+      lo: this.props.lo,
+      hi: arr_gen.length + this.props.hi,
       mid: -1,
       target: 5,
       targetOptions,
@@ -22,10 +22,11 @@ class BinarySearchCond extends React.Component {
   }
 
   move = (index, className, opacity) => {
+    const base_margin = this.props.margin ?? 0;
     animate(
       className,
       {
-        marginLeft: index * 36.5 + "px",
+        marginLeft: base_margin + index * 36.5 + "px",
         opacity: opacity ?? 1,
       },
       { delay: 0, duration: 1 }
@@ -45,7 +46,7 @@ class BinarySearchCond extends React.Component {
   markAllIn = (lo, hi) => {
     for (let i = lo; i <= hi; i++) {
       animate(
-        `#cond-s-${i}`,
+        `#${this.props.prefix}-s-${i}`,
         {
           opacity: 1,
         },
@@ -57,7 +58,7 @@ class BinarySearchCond extends React.Component {
   markOut = (lo, hi) => {
     for (let i = 0; i < lo; i++) {
       animate(
-        `#cond-s-${i}`,
+        `#${this.props.prefix}-s-${i}`,
         {
           opacity: 0.2,
         },
@@ -66,7 +67,7 @@ class BinarySearchCond extends React.Component {
     }
     for (let i = hi + 1; i < this.state.arr.length; i++) {
       animate(
-        `#cond-s-${i}`,
+        `#${this.props.prefix}-s-${i}`,
         {
           opacity: 0.2,
         },
@@ -83,7 +84,7 @@ class BinarySearchCond extends React.Component {
     }
     const arr = Array.from(set);
     arr.sort((a, b) => a - b);
-    const target = arr[this.getInRange(0, arr.length)];
+    const target = arr[this.getInRange(0, arr.length - 1)];
     this.reset(arr, target);
   };
 
@@ -106,18 +107,18 @@ class BinarySearchCond extends React.Component {
     this.setState(
       {
         arr: arr_gen,
-        lo: 0,
-        hi: arr_gen.length,
+        lo: this.props.lo,
+        hi: arr_gen.length + this.props.hi,
         mid: -1,
         target: target ?? this.state.target,
         targetOptions,
       },
       () => {
-        this.markAllIn(0, this.state.arr.length);
-        this.move(this.state.lo, "#cond-arr-lo");
-        this.move(this.state.hi, "#cond-arr-hi");
-        this.move(0, "#cond-arr-mid", 0);
-        this.color(".Cond", "white");
+        this.markAllIn(0, this.state.arr.length - 1);
+        this.move(this.state.lo, `#${this.props.prefix}-arr-lo`);
+        this.move(this.state.hi, `#${this.props.prefix}-arr-hi`);
+        this.move(0, `#${this.props.prefix}-arr-mid`, 0);
+        this.color(`.${this.props.prefix}`, "white");
       }
     );
   };
@@ -129,70 +130,62 @@ class BinarySearchCond extends React.Component {
   render() {
     let { lo, hi, mid, arr, target } = this.state;
     let { move, reset, color, markOut } = this;
+    let { next, prefix } = this.props;
 
-    const next = (arr, target) => {
-      if (lo >= hi || arr[mid] === target) {
-        return;
-      }
-      const currMid = Math.floor(lo + (hi - lo) / 2);
-      if (currMid !== mid) {
-        mid = currMid;
-        move(currMid, "#cond-arr-mid");
-        if (arr[mid] === target) {
-          color(`#cond-s-${mid}`, "#53e089");
+    const callNext = () => {
+      next(
+        arr,
+        target,
+        lo,
+        hi,
+        mid,
+        move,
+        color,
+        markOut,
+        prefix,
+        (nlo, nhi, nmid, ntarget) => {
+          lo = nlo;
+          hi = nhi;
+          mid = nmid;
+          target = ntarget;
         }
-        return;
-      }
-      if (arr[mid] >= target) {
-        hi = mid;
-        move(hi, "#cond-arr-hi");
-        markOut(lo, hi);
-      } else {
-        lo = mid + 1;
-        move(lo, "#cond-arr-lo");
-        markOut(lo, hi);
-      }
+      );
     };
-
-    const code = `
-    def binary_search_cond(arr, key):
-      lo, hi = 0, len(arr) - 1
-      while lo <= hi:
-          mid = lo + (hi - lo) // 2
-          if arr[mid] >= key:
-              hi = mid
-          else:
-              lo = mid + 1
-      return lo
-  `;
 
     return (
       <div>
         <div className="Container">
           <div className="ArrowContainer">
-            <div id="cond-arr-mid" className="ArrowMid">
+            <div id={`${prefix}-arr-mid`} className="ArrowMid">
               <ArrowDownOutlined />
               <span>M</span>
             </div>
           </div>
           <div className="SquaresContainer">
+            {this.props.left_square ? (
+              <div className="SingleSquare">
+                <div className="Square Dotted"></div>
+              </div>
+            ) : null}
             {arr.map((x, i) => (
               <div key={i} className="SingleSquare">
-                <div id={"cond-s-" + i} className="Square Cond">
+                <div id={`${prefix}-s-` + i} className={`Square ${prefix}`}>
                   <span className="Num">{x}</span>
                 </div>
               </div>
             ))}
-            <div className="SingleSquare">
-              <div className="Square Dotted"></div>
-            </div>
+            {this.props.right_square ? (
+              <div className="SingleSquare">
+                <div className="Square Dotted"></div>
+              </div>
+            ) : null}
           </div>
           <div className="ArrowContainer">
-            <div id="cond-arr-lo" className="ArrowLo">
+            <div id={`${prefix}-arr-lo`} className="ArrowLo">
               <ArrowUpOutlined />
               <span>L</span>
             </div>
-            <div id="cond-arr-hi" className="ArrowHi">
+            <div id={`${prefix}-arr-hi`} className="ArrowHi">
               <ArrowUpOutlined />
               <span>R</span>
             </div>
@@ -201,7 +194,7 @@ class BinarySearchCond extends React.Component {
             <Button
               type="primary"
               className="Button"
-              onClick={() => next(arr, target)}
+              onClick={() => callNext()}
             >
               Next
             </Button>
@@ -242,7 +235,7 @@ class BinarySearchCond extends React.Component {
         </div>
         <Row gutter={8} style={{ marginTop: "20px", width: "800px" }}>
           <Col span={16}>
-            <BasicBSCodeBlock code={code} />
+            <BasicBSCodeBlock code={this.props.code} />
           </Col>
         </Row>
       </div>
@@ -250,4 +243,4 @@ class BinarySearchCond extends React.Component {
   }
 }
 
-export default BinarySearchCond;
+export default BinarySearchWrapper;
