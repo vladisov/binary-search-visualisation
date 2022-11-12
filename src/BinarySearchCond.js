@@ -2,7 +2,7 @@ import "./BasicBinarySearch.css";
 import { animate } from "motion";
 import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
 import "@fontsource/roboto";
-import { Button, Select, Card, Row, Col } from "antd";
+import { Button, Select, Row, Col } from "antd";
 import React from "react";
 import BasicBSCodeBlock from "./components/BasicBSCodeBlock";
 
