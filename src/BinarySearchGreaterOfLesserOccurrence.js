@@ -10,12 +10,12 @@ const BinarySearchGreaterOfLesserOccurrence = () => {
   semper risus in hendrerit gravida.`;
 
   const code = `
-  def binary_search_greatest_of_lesser(arr, key):
+  def binary_search_greatest_than_less(arr, key):
     lo, hi, ans = 0, len(arr) - 1, -1
     while lo <= hi:
         mid = low + (hi - lo + 1) // 2
         if arr[mid] == key:
-            lo = mid + 1
+            hi = mid - 1
         elif key < arr[mid]:
             hi = mid - 1
         if key > arr[mid]:
@@ -44,8 +44,8 @@ const BinarySearchGreaterOfLesserOccurrence = () => {
     }
     mid = Math.floor(lo + (hi - lo + 1) / 2);
     if (arr[mid] === target) {
-      lo = mid + 1;
-      move(lo, `#${prefix}-arr-lo`);
+      hi = mid - 1;
+      move(hi, `#${prefix}-arr-hi`);
       markOut(Math.min(lo, ans), Math.max(hi, mid));
     }
     if (target < arr[mid]) {
