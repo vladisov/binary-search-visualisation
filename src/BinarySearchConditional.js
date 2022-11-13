@@ -3,11 +3,11 @@ import { Col, Row } from "antd";
 
 const BinarySearchConditional = () => {
   const explanation = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Venenatis tellus in metus vulputate. Purus sit amet volutpat
-  consequat mauris nunc congue nisi vitae. Mollis nunc sed id
-  semper risus in hendrerit gravida.`;
+   Okay, I like this one the most, because it gives you not only the element if it's there, 
+   but also the position where your element is supposed to be, if it's not there yet!
+   I suffered a bit from implementing insertion capability, 
+   SO PLEASE TRY INSERT SOMETHING, THAT IS NOT IN THE LIST.
+   `;
 
   const code = `
   def binary_search_conditional(arr, key):

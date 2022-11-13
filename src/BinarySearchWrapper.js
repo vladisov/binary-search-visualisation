@@ -282,7 +282,7 @@ class BinarySearchWrapper extends React.Component {
             </span>
             {isInput ? (
               <InputNumber
-                style={{ width: 100, marginLeft: "10px" }}
+                style={{ width: "100px", marginLeft: "10px" }}
                 min={-100}
                 max={100}
                 defaultValue={5}
