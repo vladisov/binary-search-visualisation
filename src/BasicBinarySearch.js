@@ -5,7 +5,7 @@ const BasicBinarySearch = () => {
   const explanation = `
   The basic implementation of binary search taught in kindergarten. 
   Gives you -1 if desired element is not present. 
-  Easy to write, easy to remember, never messes with indices. Editor's pick!`;
+  Easy to write, easy to remember, never messes with indices. Editor's pick! 👾`;
 
   const code = `
   def binary_search(arr, key):

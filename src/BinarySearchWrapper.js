@@ -285,6 +285,7 @@ class BinarySearchWrapper extends React.Component {
                 style={{ width: "100px", marginLeft: "10px" }}
                 min={-100}
                 max={100}
+                value={this.state.target}
                 defaultValue={5}
                 onChange={(num) => {
                   this.setState({ target: Number(num) }, () => {
@@ -301,6 +302,10 @@ class BinarySearchWrapper extends React.Component {
                 filterOption={(input, option) =>
                   (option?.label ?? "").includes(input)
                 }
+                value={{
+                  label: this.state.target,
+                  value: this.state.target,
+                }}
                 filterSort={(optionA, optionB) => optionA.value - optionB.value}
                 onSelect={(selected) => {
                   this.setState({ target: Number(selected) }, () => {

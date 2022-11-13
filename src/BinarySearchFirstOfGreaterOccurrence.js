@@ -3,17 +3,15 @@ import { Col, Row } from "antd";
 
 const BinarySearchFirstOfGreaterOccurrence = () => {
   const explanation = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Venenatis tellus in metus vulputate. Purus sit amet volutpat
-  consequat mauris nunc congue nisi vitae. Mollis nunc sed id
-  semper risus in hendrerit gravida.`;
+  This one is a more specific. In case you want to find out the number which is THE FIRST GREATER NUMBER after the target, 
+  going right (lo = mid + 1) would help you to achieve that.
+  `;
 
   const code = `
   def binary_search_first_of_least_greater(arr, key):
     lo, hi, ans = 0, len(arr) - 1, -1
     while lo <= hi:
-        mid = low + (hi - lo + 1) // 2
+        mid = lo + (hi - lo + 1) // 2
         if arr[mid] == key:
             lo = mid + 1
         elif key < arr[mid]:
@@ -81,7 +79,7 @@ const BinarySearchFirstOfGreaterOccurrence = () => {
         next={next}
         right_square={false}
         left_square={false}
-        isInput={false}
+        isInput={true}
         duplicate={false}
       />
     </Row>

@@ -3,17 +3,15 @@ import { Col, Row } from "antd";
 
 const BinarySearchGreaterOfLesserOccurrence = () => {
   const explanation = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Venenatis tellus in metus vulputate. Purus sit amet volutpat
-  consequat mauris nunc congue nisi vitae. Mollis nunc sed id
-  semper risus in hendrerit gravida.`;
+  Ok, it's getting boring, but as good as the above one, but tweaked into the opposite direction. 
+  Find the greatest of numbers on the left from our target. Honestly, 
+  I'm not sure it works, cause I was pretty tired at this stage.😅`;
 
   const code = `
   def binary_search_greatest_than_less(arr, key):
     lo, hi, ans = 0, len(arr) - 1, -1
     while lo <= hi:
-        mid = low + (hi - lo + 1) // 2
+        mid = lo + (hi - lo + 1) // 2
         if arr[mid] == key:
             hi = mid - 1
         elif key < arr[mid]:
@@ -81,7 +79,7 @@ const BinarySearchGreaterOfLesserOccurrence = () => {
         next={next}
         right_square={false}
         left_square={false}
-        isInput={false}
+        isInput={true}
         duplicate={false}
       />
     </Row>

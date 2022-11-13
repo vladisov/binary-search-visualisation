@@ -3,17 +3,14 @@ import { Col, Row } from "antd";
 
 const BinarySearchFirstOccurrence = () => {
   const explanation = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Venenatis tellus in metus vulputate. Purus sit amet volutpat
-  consequat mauris nunc congue nisi vitae. Mollis nunc sed id
-  semper risus in hendrerit gravida.`;
+  In case your data as fucked up as this one, and you really want to find the first occurrence of a particular number,
+  this little trick might help. Looking at the left side whenever you found a target (h = mid - 1) would give you the first occurrence of that number in the array.`;
 
   const code = `
   def binary_search_first_occ(arr, key):
     lo, hi, ans = 0, len(arr) - 1, -1
     while lo <= hi:
-        mid = low + (hi - lo + 1) // 2
+        mid = lo + (hi - lo + 1) // 2
         if arr[mid] == key:
             ans = mid
             hi = mid - 1

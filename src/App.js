@@ -14,6 +14,15 @@ const App = () => {
       <Row justify="center">
         <Col span={16}>
           <Card bordered={true} className="AppCard">
+            <h1
+              style={{
+                textAlign: "center",
+                marginBottom: "40px",
+              }}
+            >
+              Choose your binary search! 🤖
+            </h1>
+
             <Col gutter={16}>
               <Divider>Inclusive One</Divider>
               <Row justify="center">

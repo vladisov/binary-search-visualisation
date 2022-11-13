@@ -3,17 +3,14 @@ import { Col, Row } from "antd";
 
 const BinarySearchLastOccurrence = () => {
   const explanation = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Venenatis tellus in metus vulputate. Purus sit amet volutpat
-  consequat mauris nunc congue nisi vitae. Mollis nunc sed id
-  semper risus in hendrerit gravida.`;
+  Same good stuff as above, but we're looking on the right side of the things if we're interested in the last occurrence of a particular number.
+  Adding (lo = mid + 1) will ensure we always go to the right side whenever we found the target.`;
 
   const code = `
   def binary_search_last_occ(arr, key):
     lo, hi, ans = 0, len(arr) - 1, -1
     while lo <= hi:
-        mid = low + (hi - lo + 1) // 2
+        mid = lo + (hi - lo + 1) // 2
         if arr[mid] == key:
             ans = mid
             lo = mid + 1
