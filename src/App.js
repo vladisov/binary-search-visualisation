@@ -7,13 +7,37 @@ import BinarySearchFirstOccurrence from "./BinarySearchFirstOccurrence";
 import BinarySearchLastOccurrence from "./BinarySearchLastOccurrence";
 import BinarySearchFirstOfGreaterOccurrence from "./BinarySearchFirstOfGreaterOccurrence";
 import BinarySearchGreaterOfLesserOccurrence from "./BinarySearchGreaterOfLesserOccurrence";
+import { GithubOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 const App = () => {
+  const [spin, setSpin] = useState(false);
   return (
     <div className="AppWrapper">
       <Row justify="center">
         <Col span={16}>
           <Card bordered={true} className="AppCard">
+            <a
+              style={{
+                position: "absolute",
+                left: "95%",
+                cursor: "pointer",
+                color: "black",
+              }}
+              href="https://github.com/vladisov/binary-search-visualisation"
+            >
+              <GithubOutlined
+                onMouseOver={() => {
+                  setSpin(true);
+                }}
+                onMouseLeave={() => {
+                  setSpin(false);
+                }}
+                spin={spin}
+                style={{ fontSize: 18, cursor: "pointer", zIndex: 0 }}
+              />
+            </a>
+
             <h1
               style={{
                 textAlign: "center",
