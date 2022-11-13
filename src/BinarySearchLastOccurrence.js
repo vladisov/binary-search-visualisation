@@ -8,16 +8,16 @@ const BinarySearchLastOccurrence = () => {
 
   const code = `
   def binary_search_last_occ(arr, key):
-    lo, hi, ans = 0, len(arr) - 1, -1
-    while lo <= hi:
-        mid = lo + (hi - lo + 1) // 2
+    left, right, ans = 0, len(arr) - 1, -1
+    while left <= right:
+        mid = left + (right - left + 1) // 2
         if arr[mid] == key:
             ans = mid
-            lo = mid + 1
+            left = mid + 1
         elif key < arr[mid]:
-            hi = mid - 1
+            right = mid - 1
         if key > arr[mid]:
-            lo = mid + 1
+            left = mid + 1
     return ans
 `;
 
@@ -77,8 +77,9 @@ const BinarySearchLastOccurrence = () => {
         lo={0}
         hi={-1}
         next={next}
-        right_square={false}
-        left_square={false}
+        right_square={true}
+        left_square={true}
+        margin={35}
         isInput={false}
         duplicate={true}
         arr={[1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5]}

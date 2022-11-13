@@ -9,16 +9,16 @@ const BinarySearchGreaterOfLesserOccurrence = () => {
 
   const code = `
   def binary_search_greatest_than_less(arr, key):
-    lo, hi, ans = 0, len(arr) - 1, -1
-    while lo <= hi:
-        mid = lo + (hi - lo + 1) // 2
+    left, right, ans = 0, len(arr) - 1, -1
+    while left <= right:
+        mid = left + (right - left + 1) // 2
         if arr[mid] == key:
-            hi = mid - 1
+            right = mid - 1
         elif key < arr[mid]:
-            hi = mid - 1
+            right = mid - 1
         if key > arr[mid]:
             ans = mid
-            lo = mid + 1
+            left = mid + 1
     return ans
 `;
 
@@ -77,8 +77,9 @@ const BinarySearchGreaterOfLesserOccurrence = () => {
         lo={0}
         hi={-1}
         next={next}
-        right_square={false}
-        left_square={false}
+        right_square={true}
+        left_square={true}
+        margin={35}
         isInput={true}
         duplicate={false}
       />

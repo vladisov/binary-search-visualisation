@@ -10,14 +10,14 @@ const BinarySearchEuler = () => {
 
   const code = `
   def binary_search_euler(arr, key):
-    lo, hi = -1, n
-    while hi - lo > 1:
-        mid = lo + (hi - lo) // 2
+    left, right = -1, n
+    while right - left > 1:
+        mid = left + (right - left) // 2
         if k < arr[mid]:
-            hi = mid
+            right = mid
         else:
-            lo = mid
-    return lo
+            left = mid
+    return left
 `;
 
   const next = (

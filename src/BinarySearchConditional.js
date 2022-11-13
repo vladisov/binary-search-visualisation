@@ -11,14 +11,14 @@ const BinarySearchConditional = () => {
 
   const code = `
   def binary_search_conditional(arr, key):
-    lo, hi = 0, len(arr)
-    while lo < hi:
-        mid = lo + (hi - lo) // 2
+    left, right = 0, len(arr)
+    while left < right:
+        mid = left + (right - left) // 2
         if key <= arr[mid]:
-            hi = mid
+            right = mid
         else:
-            lo = mid + 1
-    return lo
+            left = mid + 1
+    return left
 `;
 
   const next = (

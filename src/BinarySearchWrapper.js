@@ -312,7 +312,6 @@ class BinarySearchWrapper extends React.Component {
                     this.reset(null, Number(selected));
                   });
                 }}
-                value={this.state.target}
                 options={this.state.targetOptions}
               />
             )}
