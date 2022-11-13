@@ -6,7 +6,7 @@ const BinarySearchConditional = () => {
    Okay, I like this one the most, because it gives you not only the element if it's there, 
    but also the position where your element is supposed to be, if it's not there yet!
    I suffered a bit from implementing insertion capability, 
-   SO PLEASE TRY INSERT SOMETHING, THAT IS NOT IN THE LIST. 😡
+   SO PLEASE TRY TO INSERT SOMETHING IS NOT IN THE LIST. 😡
    `;
 
   const code = `

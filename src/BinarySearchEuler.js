@@ -3,8 +3,8 @@ import { Col, Row } from "antd";
 
 const BinarySearchEuler = () => {
   const explanation = `
-  You really value amount of lies of code you write daily, and don't want to die from finger arthritis?
-  Here is a few lines shorter version of the same binary search algorithm as above. A bit tricker with indices, 
+  You really value amount of lines of code you write daily, and don't want to die from finger arthritis?
+  Here is a few lines shorter version of the same binary search algorithm as above. A bit trickier with indices, 
   tho still easy to remember.   
   `;
 
@@ -13,7 +13,7 @@ const BinarySearchEuler = () => {
     left, right = -1, n
     while right - left > 1:
         mid = left + (right - left) // 2
-        if k < arr[mid]:
+        if key < arr[mid]:
             right = mid
         else:
             left = mid

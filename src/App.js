@@ -60,7 +60,7 @@ const App = () => {
               <Row justify="center">
                 <BinarySearchConditional />
               </Row>
-              <Divider>Try to the find first occurrence</Divider>
+              <Divider>Try to find first occurrence</Divider>
               <Row justify="center">
                 <BinarySearchFirstOccurrence />
               </Row>

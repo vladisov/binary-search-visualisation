@@ -4,7 +4,7 @@ import { Col, Row } from "antd";
 const BasicBinarySearch = () => {
   const explanation = `
   The basic implementation of binary search taught in kindergarten. 
-  Gives you -1 if desired element is not present. 
+  Requires the desired element to be present in the list.
   Easy to write, easy to remember, never messes with indices. Editor's pick! 👾`;
 
   const code = `
