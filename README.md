@@ -1,3 +1,5 @@
+![](./meme.jpeg)
+
 ### How to write binary search?
 
 The answer is quite dependent on what exactly you're trying to find. The index of target element?
